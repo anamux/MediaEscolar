@@ -9,4 +9,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sair">Sair</string>
+    <string name="_1_bimestre">1º Bimestre</string>
+    <string name="m_dia_escolar">Média Escolar</string>
+    <string name="mat_ria">Matéria</string>
+    <string name="nota_da_prova">Nota da Prova</string>
+    <string name="nota_trabalho">Nota Trabalho</string>
+    <string name="hint_mat_ria">Matéria</string>
+    <string name="m_dia">Média</string>
+    <string name="situa_o">Situação</string>
+    <string name="calcular">CALCULAR</string>
 </resources>
