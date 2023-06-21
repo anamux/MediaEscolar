@@ -1,5 +1,6 @@
 package com.media.escolar;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -8,23 +9,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.media.escolar.databinding.ActivityMainBinding;
+import com.media.escolar.databinding.ContentMainBinding;
+
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Button;
+
+import java.util.function.ToDoubleBiFunction;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ContentMainBinding contentMainBinding;
+
 
 
     @Override
@@ -33,55 +41,49 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        contentMainBinding = ContentMainBinding.bind(binding.getRoot());
+
 
         setSupportActionBar(binding.toolbar);
 
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        Button primeiroBimestre = contentMainBinding.btnPrimeiroBimestre;
 
-        binding.contentMain.btnCalcular.setOnClickListener(new View.OnClickListener() {
+        primeiroBimestre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    double notaProva = 0, notaTrabalho=0, media;
-                    boolean dadosOk = true;
-                    try {
-                        if (binding.contentMain.editNotaProva.getText().toString().length() > 0){
-                            notaProva = Double.parseDouble(binding.contentMain.editNotaProva.getText().toString());
-                        }else{
-                            binding.contentMain.editNotaProva.setError("*");
-                            binding.contentMain.editNotaProva.requestFocus();
-                            dadosOk=false;
-                        }
-
-                        if (binding.contentMain.editNotaTrabalho.getText().toString().length() > 0){
-                            notaTrabalho = Double.parseDouble(binding.contentMain.editNotaTrabalho.getText().toString());
-                        }else{
-                            binding.contentMain.editNotaTrabalho.setError("*");
-                            binding.contentMain.editNotaTrabalho.requestFocus();
-                            dadosOk=false;
-                        }
-
-                        if(dadosOk){media = (notaProva + notaTrabalho) / 2;
-                            binding.contentMain.txtMedia.setText(String.valueOf(media));
-
-                            if (media >= 7) binding.contentMain.txtSituacao.setText("Aprovado");
-                            else binding.contentMain.txtSituacao.setText("Reprovado");
-
-                        }else{
-
-                        }
-
-
-                    } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "Digite os dados solicitados", Toast.LENGTH_SHORT).show();
-                    }
+                Intent i = new Intent(MainActivity.this, PrimeiroBimestreActivity.class);
+                startActivity(i);
             }
         });
 
+        Button segundoBimestre = contentMainBinding.btnSegundoBimestre;
+        segundoBimestre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SegundoBimestreActivity.class);
+                startActivity(i);
+            }
+        });
 
+        Button terceiroBimestre = contentMainBinding.btnTerceiroBimestre;
+
+        terceiroBimestre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, TerceiroBimestreActivity.class);
+                startActivity(i);
+            }
+        });
+        Button quartoBimestre = contentMainBinding.btnQuartoBimestre;
+        quartoBimestre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, QuartoBimestreActivity.class);
+                startActivity(i);
+            }
+        });
         //fab=floating action button
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,10 +114,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }

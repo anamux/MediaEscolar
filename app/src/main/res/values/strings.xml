@@ -10,16 +10,21 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="sair">Sair</string>
-    <string name="_1_bimestre">1º Bimestre</string>
-    <string name="m_dia_escolar">Média Escolar</string>
-    <string name="mat_ria">Matéria</string>
+
+<!--    content_bimestres-->
+    <string name="media_escolar">Média Escolar</string>
+    <string name="materia">Matéria</string>
     <string name="nota_da_prova">Nota da Prova</string>
     <string name="nota_trabalho">Nota Trabalho</string>
-    <string name="hint_mat_ria">Matéria</string>
+    <string name="hint_materia">Matéria</string>
     <string name="m_dia">Média</string>
-    <string name="situa_o">Situação</string>
+    <string name="situcao">Situação</string>
     <string name="calcular">CALCULAR</string>
-    <string name="_2_bimestre">Segundo Bimestre</string>
-    <string name="_3_bimestre">Terceiro Bimestre</string>
-    <string name="_4_bimestre">Quarto Bimestre</string>
+ <!--content main -->
+    <string name="primeiro_bimestre">1º Bimestre</string>
+    <string name="segundo_bimestre">2º Bimestre</string>
+    <string name="terceiro_bimestre">3º Bimestre</string>
+    <string name="quarto_bimestre">4º Bimestre</string>
+    <string name="resultado_final">Resultado Final</string>
+    <string name="media">Média</string>
 </resources>

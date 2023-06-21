@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="#b9b9ff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PrimeiroBimestreActivity"
-    tools:showIn="@layout/activity_primeiro_bimestre">
+    tools:context=".QuartoBimestreActivity"
+    tools:showIn="@layout/activity_quarto_bimestre">
 
     <TextView
         android:id="@+id/txtTitulo"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtTitulo"
         android:layout_marginTop="8dp"
-        android:text="@string/primeiro_bimestre"
+        android:text="@string/quarto_bimestre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

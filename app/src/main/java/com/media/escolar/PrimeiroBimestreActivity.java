@@ -36,38 +36,33 @@ public class PrimeiroBimestreActivity extends AppCompatActivity {
         contentPrimeiroBimestreBinding = ContentPrimeiroBimestreBinding.bind(binding.getRoot());
 
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-
         contentPrimeiroBimestreBinding.btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     double notaProva = 0, notaTrabalho=0, media;
                     boolean dadosOk = true;
                     try {
-                        if (binding.contentMain.editNotaProva.getText().toString().length() > 0){
-                            notaProva = Double.parseDouble(binding.contentMain.editNotaProva.getText().toString());
+                        if (contentPrimeiroBimestreBinding.editNotaProva.getText().toString().length() > 0){
+                            notaProva = Double.parseDouble(contentPrimeiroBimestreBinding.editNotaProva.getText().toString());
                         }else{
-                            binding.contentMain.editNotaProva.setError("*");
-                            binding.contentMain.editNotaProva.requestFocus();
+                            contentPrimeiroBimestreBinding.editNotaProva.setError("*");
+                            contentPrimeiroBimestreBinding.editNotaProva.requestFocus();
                             dadosOk=false;
                         }
 
-                        if (binding.contentMain.editNotaTrabalho.getText().toString().length() > 0){
-                            notaTrabalho = Double.parseDouble(binding.contentMain.editNotaTrabalho.getText().toString());
+                        if (contentPrimeiroBimestreBinding.editNotaTrabalho.getText().toString().length() > 0){
+                            notaTrabalho = Double.parseDouble(contentPrimeiroBimestreBinding.editNotaTrabalho.getText().toString());
                         }else{
-                            binding.contentMain.editNotaTrabalho.setError("*");
-                            binding.contentMain.editNotaTrabalho.requestFocus();
+                            contentPrimeiroBimestreBinding.editNotaTrabalho.setError("*");
+                            contentPrimeiroBimestreBinding.editNotaTrabalho.requestFocus();
                             dadosOk=false;
                         }
 
                         if(dadosOk){media = (notaProva + notaTrabalho) / 2;
-                            binding.contentMain.txtMedia.setText(String.valueOf(media));
+                            contentPrimeiroBimestreBinding.txtMedia.setText(String.valueOf(media));
 
-                            if (media >= 7) binding.contentMain.txtSituacao.setText("Aprovado");
-                            else binding.contentMain.txtSituacao.setText("Reprovado");
+                            if (media >= 7) contentPrimeiroBimestreBinding.txtSituacao.setText("Aprovado");
+                            else contentPrimeiroBimestreBinding.txtSituacao.setText("Reprovado");
 
                         }else{
 
@@ -109,12 +104,5 @@ public class PrimeiroBimestreActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
