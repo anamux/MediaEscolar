@@ -1,9 +1,11 @@
 package com.media.escolar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,6 @@ import com.media.escolar.databinding.ContentPrimeiroBimestreBinding;
 
 public class PrimeiroBimestreActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityPrimeiroBimestreBinding binding;
     private ContentPrimeiroBimestreBinding contentPrimeiroBimestreBinding;
 
@@ -34,6 +35,7 @@ public class PrimeiroBimestreActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
         contentPrimeiroBimestreBinding = ContentPrimeiroBimestreBinding.bind(binding.getRoot());
+
 
 
         contentPrimeiroBimestreBinding.btnCalcular.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +66,7 @@ public class PrimeiroBimestreActivity extends AppCompatActivity {
                             if (media >= 7) contentPrimeiroBimestreBinding.txtSituacao.setText("Aprovado");
                             else contentPrimeiroBimestreBinding.txtSituacao.setText("Reprovado");
 
+                            salvarSharedPreferences();
                         }else{
 
                         }
@@ -104,5 +107,21 @@ public class PrimeiroBimestreActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void salvarSharedPreferences(){
+        SharedPreferences mediaEscolarPref = getSharedPreferences(
+                MainActivity.SHARED_PREF, 0);
+
+        SharedPreferences.Editor mediaEscolar = mediaEscolarPref.edit();
+
+        mediaEscolar.putString("txtSituação1Bimestre", contentPrimeiroBimestreBinding.txtSituacao.getText().toString());
+        mediaEscolar.putString("matéria1Bimestre", contentPrimeiroBimestreBinding.editMateria.getText().toString());
+        mediaEscolar.putString("notaProva", contentPrimeiroBimestreBinding.editNotaProva.getText().toString());
+        mediaEscolar.putString("notaTrabalho", contentPrimeiroBimestreBinding.editNotaTrabalho.getText().toString());
+        mediaEscolar.putString("média1Bimestre", contentPrimeiroBimestreBinding.txtMedia.getText().toString());
+        mediaEscolar.putBoolean("primeiroBimestre", true);
+        mediaEscolar.commit();
+
     }
 }

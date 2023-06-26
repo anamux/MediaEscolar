@@ -1,5 +1,6 @@
 package com.media.escolar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,6 +61,7 @@ public class SegundoBimestreActivity extends AppCompatActivity {
                             if (media >= 7) contentBimestreBinding.txtSituacao.setText("Aprovado");
                             else contentBimestreBinding.txtSituacao.setText("Reprovado");
 
+                            salvarSharedPreferences();
                         }else{
 
                         }
@@ -100,5 +102,20 @@ public class SegundoBimestreActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void salvarSharedPreferences(){
+        SharedPreferences mediaEscolarPref = getSharedPreferences(
+                MainActivity.SHARED_PREF, 0);
+
+        SharedPreferences.Editor mediaEscolar = mediaEscolarPref.edit();
+
+        mediaEscolar.putString("txtSituação2Bimestre", contentBimestreBinding.txtSituacao.getText().toString());
+        mediaEscolar.putString("matéria2Bimestre", contentBimestreBinding.editMateria.getText().toString());
+        mediaEscolar.putString("notaProva2", contentBimestreBinding.editNotaProva.getText().toString());
+        mediaEscolar.putString("notaTrabalho2", contentBimestreBinding.editNotaTrabalho.getText().toString());
+        mediaEscolar.putString("média2Bimestre", contentBimestreBinding.txtMedia.getText().toString());
+        mediaEscolar.putBoolean("segundoBimestre", true);
+        mediaEscolar.apply();
+
     }
 }

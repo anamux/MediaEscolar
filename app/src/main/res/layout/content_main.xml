@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_margin="15dp"
         android:background="@drawable/btn_customizado"
-        android:enabled="true"/>
+        android:enabled="false"/>
 
     <Button android:id="@+id/btnTerceiroBimestre"
         android:layout_width="0dp"
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_margin="15dp"
         android:background="@drawable/btn_customizado"
-        android:enabled="true"/>
+        android:enabled="false"/>
 
     <Button android:id="@+id/btnQuartoBimestre"
         android:layout_width="0dp"
@@ -54,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_margin="15dp"
         android:background="@drawable/btn_customizado"
-        android:enabled="true"/>
+        android:enabled="false"/>
 
     <Button android:id="@+id/btnResultado"
         android:layout_width="0dp"
@@ -66,6 +66,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_margin="15dp"
         android:background="@drawable/btn_customizado"
-        android:enabled="true"/>
+        android:enabled="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
