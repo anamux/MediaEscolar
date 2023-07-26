@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_bimestre_a"
+            android:title="@string/primeiro_bimestre" />
+        <item
+            android:id="@+id/nav_bimestre_b"
+            android:title="@string/segundo_bimestre" />
+        <item
+            android:id="@+id/nav_bimestre_c"
+            android:title="@string/terceiro_bimestre" />
+        <item
+            android:id="@+id/nav_bimestre_d"
+            android:title="@string/quarto_bimestre" />
+        <item
+            android:id="@+id/nav_resultado_final"
+            android:title="@string/resultado_final" />
+    </group>
+
+    <item android:title="Compartilhar">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Compartilhar app" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -1,51 +1,60 @@
 package com.media.escolar;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
-import android.view.View;
 
-
-
+import com.google.android.material.navigation.NavigationView;
 import com.media.escolar.databinding.ActivityMainBinding;
-import com.media.escolar.databinding.ContentMainBinding;
-
+import com.media.escolar.databinding.FragmentPrimeiroBimestreBinding;
+import com.media.escolar.fragments.FragmentPrimeiroBimestre;
+import com.media.escolar.fragments.FragmentQuartoBimestre;
+import com.media.escolar.fragments.FragmentResultado;
+import com.media.escolar.fragments.FragmentSegundoBimestre;
+import com.media.escolar.fragments.FragmentTerceiroBimestre;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String SHARED_PREF = "sharedPreferences";
     private ActivityMainBinding binding;
-    private ContentMainBinding contentMainBinding;
+    private FragmentPrimeiroBimestreBinding fragmentPrimeiroBimestreBinding;
 
     String situacaoAtualPrimeiroBimestre, materia1Bimestre, situacaoAtualSegundoBimestre, materia2Bimestre,
             situacaoAtualTerceiroBimestre, materia3Bimestre, situacaoAtualQuartoBimestre, materia4Bimestre;
     Boolean primeiroBimestre, segundoBimestre, terceiroBimestre, quartoBimestre;
     Double media1Bimestre, media2Bimestre, media3Bimestre, media4Bimestre, mediaFinal;
-
-
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        contentMainBinding = ContentMainBinding.bind(binding.getRoot());
+        fragmentPrimeiroBimestreBinding = FragmentPrimeiroBimestreBinding.bind(binding.getRoot());
 
 
-        setSupportActionBar(binding.toolbar);
 
-        lerSharedPreferences();
 
+
+
+        // lerSharedPreferences();
+        fragmentManager = getSupportFragmentManager();
+        //Alterando conteúdo do content main
+        fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentPrimeiroBimestre()).commit();
+    }
+
+/*
 
         contentMainBinding.btnPrimeiroBimestre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //fab=floating action button
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clearSharedPreferences();
-            }
-        });
         visualizarResultado();
     }
 
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             getString(R.string.media)+": "+media1Bimestre);
             contentMainBinding.btnPrimeiroBimestre.setEnabled(false);
             contentMainBinding.btnSegundoBimestre.setEnabled(primeiroBimestre);
+
         }
         if (segundoBimestre){
             contentMainBinding.btnSegundoBimestre.setText(materia2Bimestre+ " 2º Bimestre"+
@@ -165,9 +168,9 @@ public class MainActivity extends AppCompatActivity {
 
         clearMenu();
 
-    }
+    }*/
 
-    private void clearMenu() {
+    /*private void clearMenu() {
         contentMainBinding.btnResultado.setEnabled(false);
         contentMainBinding.btnQuartoBimestre.setEnabled(false);
         contentMainBinding.btnTerceiroBimestre.setEnabled(false);
@@ -179,14 +182,14 @@ public class MainActivity extends AppCompatActivity {
         contentMainBinding.btnSegundoBimestre.setText(R.string.segundo_bimestre);
         contentMainBinding.btnTerceiroBimestre.setText(R.string.terceiro_bimestre);
         contentMainBinding.btnQuartoBimestre.setText(R.string.quarto_bimestre);
-    }
+    }*/
 
     @Override
     public void onResume() {
         super.onResume();
         Log.d("media escolar", "*****************onResume*****************");
-        lerSharedPreferences();
-        visualizarResultado();
+      //  lerSharedPreferences();
+      //  visualizarResultado();
     }
 
 
@@ -210,4 +213,32 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id ==R.id.nav_bimestre_a){
+            setTitle("Notas Primeiro Bimestre");
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentPrimeiroBimestre()).commit();
+        }else if(id == R.id.nav_bimestre_b){
+            setTitle("Notas Segundo Bimestre");
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentSegundoBimestre()).commit();
+        } else if (id == R.id.nav_bimestre_c) {
+            setTitle("Notas Terceiro Bimestre");
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentTerceiroBimestre()).commit();
+        } else if (id == R.id.nav_bimestre_d) {
+            setTitle("Notas Quarto Bimestre");
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentQuartoBimestre()).commit();
+        }else if (id == R.id.nav_resultado_final) {
+            setTitle("Resultado Final");
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentResultado()).commit();
+
+        }
+        return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
 }

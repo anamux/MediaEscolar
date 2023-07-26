@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="sair">Sair</string>
 
-<!--    content_bimestres-->
+    <!--    content_bimestres-->
     <string name="media_escolar">Média Escolar</string>
     <string name="materia">Matéria</string>
     <string name="nota_da_prova">Nota da Prova</string>
@@ -20,11 +20,14 @@
     <string name="m_dia">Média</string>
     <string name="situcao">Situação</string>
     <string name="calcular">CALCULAR</string>
- <!--content main -->
+    <!--content main -->
     <string name="primeiro_bimestre">1º Bimestre</string>
     <string name="segundo_bimestre">2º Bimestre</string>
     <string name="terceiro_bimestre">3º Bimestre</string>
     <string name="quarto_bimestre">4º Bimestre</string>
     <string name="resultado_final">Resultado Final</string>
     <string name="media">Média</string>
+    <string name="navigation_drawer_open">navigation drawer open</string>
+    <string name="navigation_drawer_close">navigation_drawer_close</string>
+
 </resources>

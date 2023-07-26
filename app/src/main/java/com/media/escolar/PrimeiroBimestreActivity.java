@@ -5,19 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 
 import com.google.android.material.snackbar.Snackbar;
-import com.media.escolar.databinding.ActivityMainBinding;
 import com.media.escolar.databinding.ActivityPrimeiroBimestreBinding;
-import com.media.escolar.databinding.ContentMainBinding;
 import com.media.escolar.databinding.ContentPrimeiroBimestreBinding;
 
 public class PrimeiroBimestreActivity extends AppCompatActivity {
