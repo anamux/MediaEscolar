@@ -9,42 +9,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MediaEscolar"
+        android:theme="@style/AppTheme.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".PrimeiroBimestreActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MediaEscolar.NoActionBar">
-        </activity>
-        <activity
-            android:name=".SegundoBimestreActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MediaEscolar.NoActionBar">
-        </activity>
-        <activity
-            android:name=".TerceiroBimestreActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MediaEscolar.NoActionBar">
-        </activity>
-        <activity
-            android:name=".QuartoBimestreActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MediaEscolar.NoActionBar">
         </activity>
     </application>
 

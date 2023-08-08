@@ -3,13 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/fragment_container">
+    <fragment
+        android:id="@+id/fragment_container"
+        android:name="com.media.escolar.fragments.FragmentPrimeiroBimestre"
+        android:label="HOST"
+        tools:layout="@layout/fragment_host">
 
+        <action
+            android:id="@+id/action_FragmentHost_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.media.escolar.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:name="com.media.escolar.fragments.FragmentPrimeiroBimestre"
+        android:label="@string/primeiro_bimestre"
+        tools:layout="@layout/fragment_primeiro_bimestre">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,12 +26,43 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.media.escolar.SecondFragment"
+        android:name="com.media.escolar.fragments.FragmentSegundoBimestre"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_segundo_bimestre">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SecondFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.media.escolar.fragments.FragmentTerceiroBimestre"
+        android:label="@string/terceiro_bimestre"
+        tools:layout="@layout/fragment_terceiro_bimestre">
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_FourthFragment"
+            app:destination="@id/FourthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FourthFragment"
+        android:name="com.media.escolar.fragments.FragmentQuartoBimestre"
+        android:label="@string/quarto_bimestre"
+        tools:layout="@layout/fragment_quarto_bimestre">
+        <action
+            android:id="@+id/action_FourthFragment_to_FifthFragment"
+            app:destination="@id/FifthFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FifthFragment"
+        android:name="com.media.escolar.fragments.FragmentResultado"
+        android:label="@string/resultado_final"
+        tools:layout="@layout/fragment_resultado">
+        <action
+            android:id="@+id/action_FirstFragment_to_FifthFragment"
+            app:destination="@id/FifthFragment" />
+    </fragment>
+
 </navigation>

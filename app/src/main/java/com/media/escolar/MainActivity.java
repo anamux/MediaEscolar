@@ -3,14 +3,19 @@ package com.media.escolar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.media.escolar.databinding.ActivityMainBinding;
 import com.media.escolar.databinding.FragmentPrimeiroBimestreBinding;
 import com.media.escolar.fragments.FragmentPrimeiroBimestre;
@@ -21,38 +26,62 @@ import com.media.escolar.fragments.FragmentTerceiroBimestre;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String SHARED_PREF = "sharedPreferences";
+    private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private FragmentPrimeiroBimestreBinding fragmentPrimeiroBimestreBinding;
+
 
     String situacaoAtualPrimeiroBimestre, materia1Bimestre, situacaoAtualSegundoBimestre, materia2Bimestre,
             situacaoAtualTerceiroBimestre, materia3Bimestre, situacaoAtualQuartoBimestre, materia4Bimestre;
     Boolean primeiroBimestre, segundoBimestre, terceiroBimestre, quartoBimestre;
     Double media1Bimestre, media2Bimestre, media3Bimestre, media4Bimestre, mediaFinal;
     FragmentManager fragmentManager;
+    public static final String MAIN_ACTIVITY = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i(MAIN_ACTIVITY, "onCreate: ...");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.appBarMain.toolbar);
         fragmentPrimeiroBimestreBinding = FragmentPrimeiroBimestreBinding.bind(binding.getRoot());
 
-
-
-
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // lerSharedPreferences();
         fragmentManager = getSupportFragmentManager();
         //Alterando conteúdo do content main
         fragmentManager.beginTransaction().replace(R.id.contentFragment, new FragmentPrimeiroBimestre()).commit();
+
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_bimestre_a, R.id.nav_bimestre_b, R.id.nav_bimestre_c,
+                R.id.nav_bimestre_d, R.id.nav_resultado_final)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
 /*
 
@@ -216,6 +245,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Log.i(MAIN_ACTIVITY, "onNavigationItemSelected: Aqui entrou? ");
         int id = item.getItemId();
         if(id ==R.id.nav_bimestre_a){
             setTitle("Notas Primeiro Bimestre");
